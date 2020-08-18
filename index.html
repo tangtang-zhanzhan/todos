@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- 标题 -->
+        <h1>todos</h1>
+        <section>
+            <son1 @passroot="pass1" @passchilk="pass2" :isclik1="isclick1"></son1>
+            <son2 :title="titleMsg" @passon="pass4" :isclick="isclick1" :text2="text1"></son2>
+            <son3 @possda="pass3"  :titleson3="titleMsg" v-if="titleMsg.length>0"></son3>
+        </section>
+        <p>Double-click to edit a todo</p>
+        <p>Written by Evan You</p>
+        <p>Part of TodoMVC</p>
+    </div>
+    <!-- 输入模块 -->
+    <template id="son1">
+        <section class="input">
+            <p @click="quanxuan">
+                <span v-if="msg.length>0">❯</span></p>
+            <input type="text" placeholder="What needs to be done?" @keyup.enter="change($event)">
+        </section>
+    </template>
+    <!-- 创建模块 -->
+    <template id="son2" v-if(title)>
+        <section class="son2_root">
+            <section class="create" v-for="(item,index) in meg" @mouseenter="show1(index)" 
+            @mouseleave="hide1(index)" :key='item.id'>
+                <p ref="myxz" @click="clickSpon(item.id)">
+                    <span v-if="isclick[item.id]">√</span>
+                </p>
+                <input type="text" :value="item.text" @keyup.enter="changeT(item.id,$event)" :ref=`myip${index}`
+                    :class="isclick[item.id]?'active':''">
+                <i :ref=`mysc${index}` @click="iMove(item.id)"></i>
+            </section>
+        </section>
+    </template>
+    <!-- 模块详情 -->
+    <template id="son3">
+        <section class="button" >
+            <span>{{sus}}items left</span>
+            <ul>
+                <li v-for='(item,index) in text' @click="stcss(index)" :class="tcss[index]?'act':''">{{item}}</li>
+            </ul>
+        </section>
+    </template>
+</body>
+<script src="./vue.js"></script>
+<script src="index.js"></script>
+
+</html>
